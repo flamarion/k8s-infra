@@ -1,0 +1,9 @@
+[masters}
+ec2-52-58-84-181.eu-central-1.compute.amazonaws.com
+ec2-18-192-14-55.eu-central-1.compute.amazonaws.com
+ec2-18-192-21-235.eu-central-1.compute.amazonaws.com
+
+[workers]
+ec2-3-120-248-9.eu-central-1.compute.amazonaws.com
+ec2-18-195-218-156.eu-central-1.compute.amazonaws.com
+ec2-18-192-197-182.eu-central-1.compute.amazonaws.com
