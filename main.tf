@@ -1,25 +1,20 @@
+terraform {
+  required_version = "~> 0.12"
+  backend "remote" {
+    organization = "FlamaCorp"
+
+    workspaces {
+      name = "tf-aws-k8s-infra"
+    }
+  }
+}
+
 provider "aws" {
   region  = "eu-central-1"
   version = "~> 2.59"
 }
 
-terraform {
-  required_version = "~> 0.12"
-
-  backend "s3" {
-
-    bucket = "flamarion-hashicorp"
-    key    = "tfstate/k8s-infra.tfstate"
-    region = "eu-central-1"
-
-
-    dynamodb_table = "flamarion-hashicorp-locks"
-    encrypt        = true
-  }
-}
-
 # VPC
-
 resource "aws_vpc" "k8s_vpc" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
@@ -47,12 +42,6 @@ resource "aws_vpc_dhcp_options" "k8s_lab" {
 resource "aws_vpc_dhcp_options_association" "k8s_resolver" {
   vpc_id          = aws_vpc.k8s_vpc.id
   dhcp_options_id = aws_vpc_dhcp_options.k8s_lab.id
-}
-
-
-resource "aws_subnet" "public_subnet" {
-  count             = len(var.public_subnet)
-  availability_zone = element(var.az, count.index)
 }
 
 # Security Groups
