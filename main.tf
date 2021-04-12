@@ -1,13 +1,13 @@
-terraform {
-  required_version = "~> 0.12"
-  backend "remote" {
-    organization = "FlamaCorp"
-
-    workspaces {
-      name = "tf-aws-k8s-infra"
-    }
-  }
-}
+#terraform {
+#  required_version = "~> 0.12"
+#  backend "remote" {
+#    organization = "FlamaCorp"
+#
+#    workspaces {
+#      name = "tf-aws-k8s-infra"
+#    }
+#  }
+#}
 
 provider "aws" {
   region  = "eu-central-1"
